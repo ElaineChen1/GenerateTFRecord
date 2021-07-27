@@ -15,12 +15,12 @@ from collections import namedtuple
 # -- set the directories and paths
 # -- make sure to do run for train, test and validation if you have it
 dataset = "test"
-xml_dir = os.path.join('Tensorflow', 'data_models', 'images', dataset)
-image_dir = os.path.join('Tensorflow', 'data_models', 'images', dataset)
+xml_dir = os.path.join('Tensorflow', 'workspace', 'images', dataset)
+image_dir = os.path.join('Tensorflow', 'workspace', 'images', dataset)
 
-labels_path = os.path.join('Tensorflow', 'data_models', 'annotations', 'label_map.pbtxt')
+labels_path = os.path.join('Tensorflow', 'workspace', 'annotations', 'label_map.pbtxt')
 
-output_path = os.path.join('Tensorflow', 'data_models', 'annotations', dataset+'.record')
+output_path = os.path.join('Tensorflow', 'workspace', 'annotations', dataset+'.record')
 
 # Initiate argument parser
 parser = argparse.ArgumentParser(
