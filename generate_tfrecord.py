@@ -67,10 +67,10 @@ def xml_to_csv(path):
                      int(root.find('size')[0].text),
                      int(root.find('size')[1].text),
                      member[0].text,
-                     int(member[4][0].text),
-                     int(member[4][2].text),
-                     int(member[4][1].text),
-                     int(member[4][3].text)
+                     int(member[5][0].text),
+                     int(member[5][2].text),
+                     int(member[5][1].text),
+                     int(member[5][3].text)
                      )
             xml_list.append(value)
 
@@ -147,7 +147,7 @@ def main(_):
     print('Successfully created the TFRecord file: {}'.format(args.output_path))
 
     if args.csv_path is not None:
-        examples.to_csv(csv_path, index=None)
+        examples.to_csv(args.csv_path, index=None)
         print('Successfully created the CSV file: {}'.format(args.csv_path))
 
 
