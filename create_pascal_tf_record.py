@@ -5,10 +5,16 @@ import os
 
 from lxml import etree
 import PIL.Image
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
+
+dataset = "test"
+image_dir = os.path.join('Tensorflow', 'data_models', 'images', dataset)
+annotations_dir = os.path.join('Tensorflow', 'data_models', 'images', dataset)
+output_path = os.path.join('Tensorflow', 'data_models', 'annotations', dataset+'.record')
+label_map_path = os.path.join('Tensorflow', 'data_models', 'annotations', 'label_map.pbtxt')
 
 
 flags = tf.app.flags
