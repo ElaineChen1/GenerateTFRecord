@@ -59,7 +59,7 @@ def dict_to_tf_example(data,
                        dataset_directory,
                        label_map_dict,
                        ignore_difficult_instances=False,
-                       image_subdirectory='JPEGImages'):
+                       image_subdirectory='PNGImages'):
   """Convert XML derived dict to tf.Example proto.
   Notice that this function normalizes the bounding box coordinates provided
   by the raw data.
@@ -83,8 +83,8 @@ def dict_to_tf_example(data,
     encoded_jpg = fid.read()
   encoded_jpg_io = io.BytesIO(encoded_jpg)
   image = PIL.Image.open(encoded_jpg_io)
-  if image.format != 'JPEG':
-    raise ValueError('Image format not JPEG')
+  if image.format != 'PNG':
+    raise ValueError('Image format not PNG')
   key = hashlib.sha256(encoded_jpg).hexdigest()
 
   width = int(data['size']['width'])
@@ -125,7 +125,7 @@ def dict_to_tf_example(data,
           data['filename'].encode('utf8')),
       'image/key/sha256': dataset_util.bytes_feature(key.encode('utf8')),
       'image/encoded': dataset_util.bytes_feature(encoded_jpg),
-      'image/format': dataset_util.bytes_feature('jpeg'.encode('utf8')),
+      'image/format': dataset_util.bytes_feature('png'.encode('utf8')),
       'image/object/bbox/xmin': dataset_util.float_list_feature(xmin),
       'image/object/bbox/xmax': dataset_util.float_list_feature(xmax),
       'image/object/bbox/ymin': dataset_util.float_list_feature(ymin),
@@ -157,7 +157,7 @@ def main(_):
   for year in years:
     logging.info('Reading from PASCAL %s dataset.', year)
     examples_path = os.path.join(data_dir, year, 'ImageSets', 'Main',
-                                 'aeroplane_' + FLAGS.set + '.txt')
+                                 'captcha_' + FLAGS.set + '.txt')
     annotations_dir = os.path.join(data_dir, year, FLAGS.annotations_dir)
     examples_list = dataset_util.read_examples_list(examples_path)
     for idx, example in enumerate(examples_list):
